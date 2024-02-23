@@ -1,0 +1,20 @@
+{
+  "name": "farm-management",
+  "version": "1.0.0",
+  "description": "farm management backend system",
+  "main": "backend/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon backend/server.js"
+  },
+  "author": "abel masingita",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0"
+  }
+}

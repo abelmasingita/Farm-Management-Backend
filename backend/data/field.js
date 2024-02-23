@@ -1,0 +1,58 @@
+const fields = [
+  {
+    id: 1,
+    farmId: 1,
+    name: 'Field A1',
+    size: 50,
+    cropType: 'Corn',
+    irrigationMethod: 'C1',
+    soilType: 'T1',
+  },
+  {
+    id: 2,
+    farmId: 1,
+    name: 'Field A2',
+    size: 50,
+    cropType: 'Wheat',
+    irrigationMethod: 'C1',
+    soilType: 'T1',
+  },
+  {
+    id: 3,
+    farmId: 2,
+    name: 'Field B1',
+    size: 75,
+    cropType: 'Soybeans',
+    irrigationMethod: 'C1',
+    soilType: 'T1',
+  },
+  {
+    id: 4,
+    farmId: 2,
+    name: 'Field B2',
+    size: 75,
+    cropType: 'Barley',
+    irrigationMethod: 'C1',
+    soilType: 'T1',
+  },
+  {
+    id: 5,
+    farmId: 3,
+    name: 'Field C1',
+    size: 100,
+    cropType: 'Rice',
+    irrigationMethod: 'C1',
+    soilType: 'T1',
+  },
+  {
+    id: 6,
+    farmId: 3,
+    name: 'Field C2',
+    size: 100,
+    cropType: 'Oats',
+    irrigationMethod: 'C1',
+    soilType: 'T1',
+  },
+]
+
+export default fields
