@@ -1,5 +1,5 @@
 import express from 'express'
-import { Field } from '../models/FieldModel.js'
+import { Field } from '../models/fieldModel.js'
 import asyncHandler from 'express-async-handler'
 
 const getField = asyncHandler(async (req, res) => {
