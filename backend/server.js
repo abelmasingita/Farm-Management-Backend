@@ -4,11 +4,13 @@ import connectDB from './config/db.js'
 import { importData, deleteData } from './seeder.js'
 import farmRoutes from './routes/farmRoutes.js'
 import fieldRoutes from './routes/fieldRoutes.js'
+import cors from 'cors'
 
 //Config
 dotenv.config()
 const app = express()
 app.use(express.json())
+app.use(cors())
 connectDB()
 
 const mode = process.env.mode
