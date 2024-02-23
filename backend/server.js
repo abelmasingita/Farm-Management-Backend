@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import connectDB from './config/db.js'
+import { importData, deleteData } from './seeder.js'
 import farmRoutes from './routes/farmRoutes.js'
 import fieldRoutes from './routes/fieldRoutes.js'
-import connectDB from './config/db.js'
-import { deleteData, importData } from './seeder.js'
 
 //Config
 dotenv.config()
@@ -12,12 +12,13 @@ app.use(express.json())
 connectDB()
 
 const mode = process.env.mode
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 
 //Seeder code
-importData()
+//importData()
 //deleteData()
 
+//routes
 app.get('/', (req, res) => {
   res.send('Backend Running!')
 })
