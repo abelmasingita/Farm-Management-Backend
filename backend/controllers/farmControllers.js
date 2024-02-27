@@ -13,7 +13,7 @@ const getFarms = asyncHandler(async (req, res) => {
   }
 })
 
-const getFarmId = asyncHandler(async (req, res) => {
+const getFarmById = asyncHandler(async (req, res) => {
   const farm = await Farm.findById(req.params.id)
 
   if (farm) {
@@ -78,4 +78,4 @@ const updateFarm = asyncHandler(async (req, res) => {
     throw new Error('Farm not found')
   }
 })
-export { getFarms, getFarmId, deleteFarm, createFarm, updateFarm }
+export { getFarms, getFarmById, deleteFarm, createFarm, updateFarm }
