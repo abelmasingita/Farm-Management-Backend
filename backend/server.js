@@ -4,6 +4,7 @@ import connectDB from './config/db.js'
 import { importData, deleteData } from './seeder.js'
 import farmRoutes from './routes/farmRoutes.js'
 import fieldRoutes from './routes/fieldRoutes.js'
+import cropRoutes from './routes/cropRoutes.js'
 import cors from 'cors'
 
 //Config
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 //Middleware
 app.use('/api/farm', farmRoutes)
 app.use('/api/field', fieldRoutes)
+app.use('/api/crop', cropRoutes)
 
 //Listener
 app.listen(port, () => {
