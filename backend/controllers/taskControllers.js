@@ -75,7 +75,7 @@ const updateTask = asyncHandler(async (req, res) => {
     task.field_id = field_id
     task.employee_id = employee_id
 
-    const updatedtask = await Task.save()
+    const updatedtask = await task.save()
     res.json(updatedtask)
   } else {
     res.status(404)
