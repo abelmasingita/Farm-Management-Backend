@@ -8,6 +8,7 @@ import {
   cropRoutes,
   employeeRoutes,
   taskRoutes,
+  authRoutes,
 } from './routes/index.js'
 
 import cors from 'cors'
@@ -37,6 +38,7 @@ app.use('/api/field', fieldRoutes)
 app.use('/api/crop', cropRoutes)
 app.use('/api/employee', employeeRoutes)
 app.use('/api/task', taskRoutes)
+app.use('/api/auth', authRoutes)
 
 //Listener
 app.listen(port, () => {
