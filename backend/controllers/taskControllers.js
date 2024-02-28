@@ -37,15 +37,17 @@ const deleteTask = asyncHandler(async (req, res) => {
 })
 
 const createTask = asyncHandler(async (req, res) => {
-  const { name, location, size, owner, contactInformation } = req.body
+  const { name, description, status, task_date, field_id, employee_id } =
+    req.body
 
   try {
     const task = await Task.create({
-      name: name,
-      location: location,
-      size: size,
-      owner: owner,
-      contactInformation: contactInformation,
+      name,
+      description,
+      status,
+      task_date,
+      field_id,
+      employee_id,
     })
 
     if (task) {
@@ -60,22 +62,24 @@ const createTask = asyncHandler(async (req, res) => {
 })
 
 const updateTask = asyncHandler(async (req, res) => {
-  const { name, location, size, owner, contactInformation } = req.body
+  const { name, description, status, task_date, field_id, employee_id } =
+    req.body
 
   const task = await Task.findById(req.params.id)
 
   if (task) {
-    ;(task.name = name),
-      (task.size = size),
-      (task.location = location),
-      (task.owner = owner),
-      (task.contactInformation = contactInformation)
+    task.name = name
+    task.description = description
+    task.status = status
+    task.task_date = task_date
+    task.field_id = field_id
+    task.employee_id = employee_id
 
     const updatedtask = await Task.save()
     res.json(updatedtask)
   } else {
     res.status(404)
-    throw new Error('task not found')
+    throw new Error('Task not found')
   }
 })
 export { getTasks, getTaskById, deleteTask, createTask, updateTask }

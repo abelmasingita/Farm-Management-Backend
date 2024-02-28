@@ -1,10 +1,15 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './config/db.js'
-import { importData, deleteData } from './seeder.js'
-import farmRoutes from './routes/farmRoutes.js'
-import fieldRoutes from './routes/fieldRoutes.js'
-import cropRoutes from './routes/cropRoutes.js'
+//import { importData, deleteData } from './seeder.js'
+import {
+  farmRoutes,
+  fieldRoutes,
+  cropRoutes,
+  employeeRoutes,
+  taskRoutes,
+} from './routes/index.js'
+
 import cors from 'cors'
 
 //Config
@@ -30,6 +35,8 @@ app.get('/', (req, res) => {
 app.use('/api/farm', farmRoutes)
 app.use('/api/field', fieldRoutes)
 app.use('/api/crop', cropRoutes)
+app.use('/api/employee', employeeRoutes)
+app.use('/api/task', taskRoutes)
 
 //Listener
 app.listen(port, () => {
