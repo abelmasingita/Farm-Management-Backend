@@ -42,15 +42,15 @@ const Login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username })
 
   if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.username,
-      username: user.username,
-      role: user.role,
-      token: generateToken(user._id, user.role),
-    })
+    var token = generateToken(user._id, user.role)
+    res
+      .cookie('jwt', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      })
+      .send()
+    res.status(200).send({ message: 'Logged in successfully' })
   } else {
     res.status(401)
     throw new Error('User name or Password is Invalid')
@@ -60,7 +60,7 @@ const Login = asyncHandler(async (req, res) => {
 //helper
 const generateToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.SECRET, {
-    expiresIn: '30d',
+    expiresIn: '1h',
   })
 }
 

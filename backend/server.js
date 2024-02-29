@@ -18,7 +18,13 @@ import { errorHandler, notFound } from './middleware/errorHandler.js'
 dotenv.config()
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(
+  cors({
+    origin: '*', // Allow any origin
+    credentials: true, // Allow cookies to be sent with requests
+  })
+)
+
 connectDB()
 
 const mode = process.env.mode
