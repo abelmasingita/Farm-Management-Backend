@@ -6,15 +6,19 @@ import {
   updateEmployee,
   deleteEmployee,
 } from '../controllers/employeeControllers.js'
+import { checkRoles, protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.route('/').get(getEmployees).post(createEmployee)
+router
+  .route('/')
+  .get(protect, checkRoles('Admin', 'Manager', 'Employee'), getEmployees)
+  .post(protect, checkRoles('Admin', 'Manager'), createEmployee)
 
 router
   .route('/:id')
-  .get(getEmployeeById)
-  .delete(deleteEmployee)
-  .put(updateEmployee)
+  .get(protect, checkRoles('Admin', 'Manager', 'Employee'), getEmployeeById)
+  .delete(protect, checkRoles('Admin'), deleteEmployee)
+  .put(protect, checkRoles('Admin', 'Manager'), updateEmployee)
 
 export default router

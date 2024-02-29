@@ -27,35 +27,13 @@ export const protect = asyncHandler(async (req, res, next) => {
   }
 })
 
-export const admin = asyncHandler((req, res, next) => {
-  if (req.user && req.user.role === 'Admin') {
-    next()
-  } else {
-    res.status(401)
-    throw new Error('Do not have neccessary Permissions of an Admin')
-  }
-})
-export const mananger = asyncHandler((req, res, next) => {
-  if (req.user && req.user.role === 'Manager') {
-    next()
-  } else {
-    res.status(401)
-    throw new Error('Do not have neccessary Permissions of a Manager')
-  }
-})
-export const employee = asyncHandler((req, res, next) => {
-  if (req.user && req.user.role === 'Employee') {
-    next()
-  } else {
-    res.status(401)
-    throw new Error('Do not have neccessary Permissions of an Employee')
-  }
-})
-export const guest = asyncHandler((req, res, next) => {
-  if (req.user && req.user.role === 'Guest') {
-    next()
-  } else {
-    res.status(401)
-    throw new Error('Do not have neccessary Permissions of a Guest')
-  }
-})
+export const checkRoles = (...roles) => {
+  return asyncHandler((req, res, next) => {
+    if (req.user && roles.includes(req.user.role)) {
+      next()
+    } else {
+      res.status(401)
+      throw new Error('Not authorized to access this resource')
+    }
+  })
+}

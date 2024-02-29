@@ -12,6 +12,7 @@ import {
 } from './routes/index.js'
 
 import cors from 'cors'
+import { errorHandler, notFound } from './middleware/errorHandler.js'
 
 //Config
 dotenv.config()
@@ -39,6 +40,10 @@ app.use('/api/crop', cropRoutes)
 app.use('/api/employee', employeeRoutes)
 app.use('/api/task', taskRoutes)
 app.use('/api/auth', authRoutes)
+
+//error handler
+app.use(notFound)
+app.use(errorHandler)
 
 //Listener
 app.listen(port, () => {

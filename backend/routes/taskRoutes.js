@@ -6,16 +6,19 @@ import {
   createTask,
   updateTask,
 } from '../controllers/taskControllers.js'
-import { admin, mananger, protect } from '../middleware/authMiddleware.js'
+import { checkRoles, protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.route('/').get(protect, getTasks).post(protect, createTask)
+router
+  .route('/')
+  .get(protect, checkRoles('Admin', 'Manager', 'Employee'), getTasks)
+  .post(protect, checkRoles('Admin', 'Manager'), createTask)
 
 router
   .route('/:id')
-  .get(protect, getTaskById)
-  .delete(protect, admin, deleteTask)
-  .put(protect, updateTask)
+  .get(protect, checkRoles('Admin', 'Manager', 'Employee'), getTaskById)
+  .delete(protect, checkRoles('Admin', 'Manager'), deleteTask)
+  .put(protect, checkRoles('Admin', 'Manager', 'Employee'), updateTask)
 
 export default router

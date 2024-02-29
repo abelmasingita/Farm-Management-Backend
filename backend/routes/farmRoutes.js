@@ -6,12 +6,19 @@ import {
   getFarms,
   updateFarm,
 } from '../controllers/farmControllers.js'
-import { admin, protect } from '../middleware/authMiddleware.js'
+import { checkRoles, protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.route('/').get(getFarms).post(protect, admin, createFarm)
+router
+  .route('/')
+  .get(protect, checkRoles('Admin', 'Manager', 'Employee'), getFarms)
+  .post(protect, checkRoles('Admin', 'Manager'), createFarm)
 
-router.route('/:id').get(getFarmById).delete(deleteFarm).put(updateFarm)
+router
+  .route('/:id')
+  .get(protect, checkRoles('Admin', 'Manager', 'Employee'), getFarmById)
+  .delete(protect, checkRoles('Admin'), deleteFarm)
+  .put(protect, checkRoles('Admin', 'Manager'), updateFarm)
 
 export default router
