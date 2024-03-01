@@ -42,16 +42,10 @@ const Login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username })
 
   if (user && (await user.matchPassword(password))) {
-    var token = generateToken(user._id, user.role)
-    res
-      .cookie('auth', token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: 'Lax',
-        maxAge: 3600000,
-      })
-      .send()
-    res.status(200).send({ message: 'Logged in successfully' })
+    const token = generateToken(user._id, user.role)
+    res.status(200).json({ message: 'Logged in successfully', token })
+
+    localStorage.setItem('auth', token)
   } else {
     res.status(401)
     throw new Error('User name or Password is Invalid')
