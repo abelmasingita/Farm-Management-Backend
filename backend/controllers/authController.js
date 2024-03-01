@@ -44,10 +44,10 @@ const Login = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     var token = generateToken(user._id, user.role)
     res
-      .cookie('jwt', token, {
+      .cookie('jwt-token', token, {
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
+        sameSite: 'None',
       })
       .send()
     res.status(200).send({ message: 'Logged in successfully' })
