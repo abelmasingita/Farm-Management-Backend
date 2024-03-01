@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import connectDB from './config/db.js'
 //import { importData, deleteData } from './seeder.js'
 import {
@@ -18,6 +19,7 @@ import { errorHandler, notFound } from './middleware/errorHandler.js'
 dotenv.config()
 const app = express()
 app.use(express.json())
+app.use(cookieParser())
 const corsOptions = {
   origin: true,
   credentials: true,
