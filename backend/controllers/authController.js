@@ -44,7 +44,7 @@ const Login = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     var token = generateToken(user._id, user.role)
     res
-      .cookie('jwt-token', token, {
+      .cookie('auth', token, {
         httpOnly: true,
         secure: false,
         sameSite: 'Lax',
