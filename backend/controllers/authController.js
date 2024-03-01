@@ -46,8 +46,9 @@ const Login = asyncHandler(async (req, res) => {
     res
       .cookie('jwt-token', token, {
         httpOnly: true,
-        secure: true,
-        sameSite: 'None',
+        secure: false,
+        sameSite: 'Lax',
+        maxAge: 3600000,
       })
       .send()
     res.status(200).send({ message: 'Logged in successfully' })
