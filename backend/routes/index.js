@@ -4,6 +4,7 @@ import cropRoutes from './cropRoutes.js'
 import employeeRoutes from './employeeRoutes.js'
 import taskRoutes from './taskRoutes.js'
 import authRoutes from './authRoutes.js'
+import userRoutes from './userRoutes.js'
 
 export {
   farmRoutes,
@@ -12,4 +13,5 @@ export {
   employeeRoutes,
   taskRoutes,
   authRoutes,
+  userRoutes,
 }

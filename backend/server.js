@@ -10,6 +10,7 @@ import {
   employeeRoutes,
   taskRoutes,
   authRoutes,
+  userRoutes,
 } from './routes/index.js'
 
 import cors from 'cors'
@@ -48,6 +49,7 @@ app.use('/api/crop', cropRoutes)
 app.use('/api/employee', employeeRoutes)
 app.use('/api/task', taskRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
 
 //error handler
 app.use(notFound)
