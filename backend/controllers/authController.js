@@ -46,7 +46,7 @@ const Login = asyncHandler(async (req, res) => {
     res.cookie('auth', token, {
       secure: true,
       maxAge: 3600000,
-      HttpOnly: true,
+      httpOnly: true,
       sameSite: 'lax',
     })
 
