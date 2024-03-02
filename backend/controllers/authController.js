@@ -53,7 +53,7 @@ const Login = asyncHandler(async (req, res) => {
 
 //helper
 const generateToken = (id, role) => {
-  return jwt.sign({ id, role }, process.env.SECRET, {
+  return jwt.sign({ id, role: role.name }, process.env.SECRET, {
     expiresIn: '1h',
   })
 }
