@@ -43,13 +43,6 @@ const Login = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     const token = generateToken(user._id, user.role)
 
-    res.cookie('auth', token, {
-      secure: true,
-      maxAge: 3600000,
-      httpOnly: true,
-      sameSite: 'lax',
-    })
-
     res.status(200).json({ message: 'Logged in successfully', token })
   } else {
     res.status(401)
