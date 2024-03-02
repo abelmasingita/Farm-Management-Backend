@@ -1,13 +1,17 @@
 import { Field } from './models/fieldModel.js'
 import { Farm } from './models/farmModel.js'
+import { Role } from './models/roleModel.js'
 import farms from './data/farm.js'
 import fields from './data/field.js'
+import roles from './data/role.js'
 
 export const importData = async () => {
   try {
     await Field.deleteMany()
     await Farm.deleteMany()
+    await Role.deleteMany()
 
+    await Role.insertMany(roles)
     const savedFarms = await Farm.insertMany(farms)
 
     const farm = savedFarms[0]._id

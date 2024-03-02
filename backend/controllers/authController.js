@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken'
-
+import { Role } from '../models/roleModel.js'
 import { User } from '../models/userModel.js'
 
 const Register = asyncHandler(async (req, res) => {
@@ -39,9 +39,10 @@ const Login = asyncHandler(async (req, res) => {
   const { username, password } = req.body
 
   const user = await User.findOne({ username })
+  const role = await Role.findById(user?.roleId)
 
   if (user && (await user.matchPassword(password))) {
-    const token = generateToken(user._id, user.role)
+    const token = generateToken(user._id, role)
 
     res.status(200).json({ message: 'Logged in successfully', token })
   } else {

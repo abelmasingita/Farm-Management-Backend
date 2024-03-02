@@ -25,11 +25,6 @@ const userSchema = new Schema(
       unique: false,
       required: true,
     },
-    role: {
-      type: String,
-      default: 'Guest',
-      required: true,
-    },
     phoneNumber: {
       type: String,
       unique: true,
@@ -38,6 +33,10 @@ const userSchema = new Schema(
     isActive: {
       type: String,
       default: true,
+    },
+    roleId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Role',
     },
   },
   {
