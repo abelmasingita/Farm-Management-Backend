@@ -4,13 +4,9 @@ import { jwtDecode } from 'jwt-decode'
 
 export const protect = asyncHandler(async (req, res, next) => {
   let token
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
+  if (req.headers.authorization) {
     try {
-      token = req.headers.authorization.split(' ')[2]
-
+      token = req.headers.authorization
       const decoded = jwtDecode(token)
 
       req.user = await User.findById(decoded.id).select('-password')
