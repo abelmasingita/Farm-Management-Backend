@@ -1,4 +1,5 @@
 import { User } from '../models/userModel.js'
+import { Role } from '../models/roleModel.js'
 import asyncHandler from 'express-async-handler'
 
 const getUsers = asyncHandler(async (req, res) => {
@@ -9,6 +10,28 @@ const getUsers = asyncHandler(async (req, res) => {
   } else {
     res.status(404)
     throw new Error('Users not found!')
+  }
+})
+
+const getRoles = asyncHandler(async (req, res) => {
+  const roles = await Role.find()
+
+  if (roles) {
+    res.status(200).json(roles)
+  } else {
+    res.status(404)
+    throw new Error('Roles not found!')
+  }
+})
+
+const getRoleById = asyncHandler(async (req, res) => {
+  const role = await Role.findById(req.params.id)
+
+  if (role) {
+    res.status(200).json(role)
+  } else {
+    res.status(404)
+    throw new Error('Role not found!')
   }
 })
 
@@ -54,4 +77,4 @@ const updateUser = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
-export { getUsers, getUserById, deleteUser, updateUser }
+export { getUsers, getUserById, deleteUser, updateUser, getRoles, getRoleById }
