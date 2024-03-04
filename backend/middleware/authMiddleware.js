@@ -1,4 +1,5 @@
 import { User } from '../models/userModel.js'
+import { Role } from '../models/roleModel.js'
 import asyncHandler from 'express-async-handler'
 import { jwtDecode } from 'jwt-decode'
 
@@ -24,8 +25,10 @@ export const protect = asyncHandler(async (req, res, next) => {
 })
 
 export const checkRoles = (...roles) => {
-  return asyncHandler((req, res, next) => {
-    if (req.user && roles.includes(req.user.role)) {
+  return asyncHandler(async (req, res, next) => {
+    const role = await Role.findById(req.user.roleId)
+
+    if (req.user && roles.includes(role.name)) {
       next()
     } else {
       res.status(401)
