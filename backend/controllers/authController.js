@@ -4,7 +4,8 @@ import { Role } from '../models/roleModel.js'
 import { User } from '../models/userModel.js'
 
 const Register = asyncHandler(async (req, res) => {
-  const { username, password, firstName, lastName, phoneNumber } = req.body
+  const { username, password, firstName, lastName, phoneNumber, roleId } =
+    req.body
 
   if (password.length < 6) {
     return res.status(400).json({ message: 'Password less than 6 characters' })
@@ -21,8 +22,8 @@ const Register = asyncHandler(async (req, res) => {
       firstName,
       lastName,
       phoneNumber,
+      roleId,
     }
-
     const createdUser = await User.create(newuser)
 
     res.status(201).json({
