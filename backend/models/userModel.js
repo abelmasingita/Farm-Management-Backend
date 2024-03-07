@@ -13,6 +13,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       minlength: 6,
+      default: '===19641Mm1505***@@',
       required: true,
     },
     firstName: {
